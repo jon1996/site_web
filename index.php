@@ -1,6 +1,8 @@
 <?php
     require_once("core/httprequests/Httprequests.php");
     // Sending the contact us email
+    include('include/header.php');
+    include('include/topnav.php');
 
     if(isset($_POST['contactus'])){
         $name=$_POST['name'];
@@ -23,6 +25,16 @@
     
             Httprequests::curl_post_async($url, $emailData);
 
+           ?> 
+                <script>
+                    Swal.fire(
+                        "Dear <?=$name?>",
+                        "Thank you for reaching out to us. We will revert as soon as possible.",
+                        "success"
+                    );
+                </script>
+            
+<?php
         } else{
             // Data validation
         }
@@ -31,11 +43,18 @@
         
     }
 
+?>
+
+<style>
+    
+
+</style>
+
+<?php
 
 
-
-    include('include/header.php');
-    include('include/topnav.php');
+    
+    
     include('include/section/service.php');
     include('include/section/mineral.php');
     include('include/section/about.php');
@@ -46,6 +65,7 @@
     include('include/js.php');
 
 ?>
+
 
 
 <script>
